@@ -4,6 +4,7 @@ import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-vi
 import { createAppContainer, createStackNavigator} from 'react-navigation';
 
 import HotList from './HotList';
+import SoonList from './SoonList';
 
 export default class PlayList extends Component {
     static navigationOptions = {
@@ -29,6 +30,7 @@ export default class PlayList extends Component {
                         <HotList navigation={this.props.navigation}></HotList>
                     </View>
                     <View tabLabel='即将上映' style={{marginBottom:50}}>
+                        <SoonList navigation={this.props.navigation}></SoonList>
                     </View>
 
                 </ScrollableTabView>

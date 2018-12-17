@@ -11,12 +11,12 @@ import PropTypes from 'prop-types';
 
 export default class Star extends Component {
     static defaultProps = {
-        value: '60',
+        value: {},
         width: 12,
         height: 12
     };
     static propTypes = {
-        value: PropTypes.string.isRequired,
+        value: PropTypes.object.isRequired,
     };
     constructor(props) {
         super(props);
@@ -24,31 +24,32 @@ export default class Star extends Component {
 
     _renderStars(props) {
         const {value, width, height} = props;
-        const stars = [];
+        const {stars, average} = value;
+        const results = [];
         let flag = true;
-        if (value == '00') {
+        if (stars == '00') {
             return <Text>暂无评分</Text>
         }
 
         for (let i = 0; i < 5; i++) {
-            if (i < value[0]) {
-                stars.push(
+            if (i < stars[0]) {
+                results.push(
                     <Image 
                     key={i}
                     style={{width: width, height: height}} 
                     source={require('../images/star-full.png')}/>
                 );
             }else{
-                if (flag && value[1] == '5') {
+                if (flag && stars[1] == '5') {
                     flag = false;
-                    stars.push(
+                    results.push(
                         <Image 
                         key={i}
                         style={{width: width, height: height}} 
                         source={require('../images/star-half.png')}/>
                     );
                 }else{
-                    stars.push(
+                    results.push(
                         <Image 
                         key={i}
                         style={{width: width, height: height}} 
@@ -57,7 +58,8 @@ export default class Star extends Component {
                 }
             } 
         }
-        return stars;
+        results.push(<Text key={5} style={styles.average}>{average.toFixed(1)}</Text>);
+        return results;
     }
 
     render() {
@@ -78,5 +80,10 @@ const styles = StyleSheet.create({
     },
     star: {
         flexDirection: 'row'
+    },
+    average: {
+        color: '#A6A6A6',
+        paddingLeft: 5,
+        fontSize: 12
     }
 });

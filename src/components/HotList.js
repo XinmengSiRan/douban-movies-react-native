@@ -81,7 +81,7 @@ export default class HotList extends Component {
                             <View style={{flex: 2, alignItems: 'flex-start', paddingLeft: 5}}>
                                 <Text style={styles.title}>{item.title}</Text>
                                 <View style={styles.star}>
-                                    <Star value={item.rating.stars}></Star>
+                                    <Star value={item.rating}></Star>
                                 </View>
                                 <Text style={styles.smallFont}>导演：{item.directors[0].name}</Text>
                                 <Text style={styles.smallFont}>主演：{item.casts.map((v)  => v.name).join('/')}</Text>
@@ -149,9 +149,6 @@ const styles = StyleSheet.create({
     },
     redFont: {
         color: '#FF4E65',
-    },
-    yellowFont: {
-        color: '#EFCE00'
     },
     star: {
         marginTop: 10,
